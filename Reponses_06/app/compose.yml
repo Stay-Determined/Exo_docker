@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+  db:
+    image: postgres
+    ports:
+      - "8001:5432"
+    environment:
+      - POSTGRES_USER=SYSDBA
+      - POSTGRES_PASSWORD=masterkey
+      - POSTGRES_DB=rentx
