@@ -29,6 +29,19 @@ psql -U docker docker
 SELECT COUNT(*) FROM personnes WHERE age > 30;
 
 6/
+docker network create aaaa
+docker build -t app .
+docker build -t bdd .
+docker run -d --name conteneur1 -p 3000:3000 app
+docker run -d --name conteneur2 -p 3001:3001 bdd
+docker ps
+docker network connect aaaa conteneur1
+docker network connect aaaa conteneur2
+docker network inspect aaaa
+docker network ls             ------> on récupère les NETWORK ID des 2 conteneurs
 
-docker create network <nomDuReseau>
- 
+docker exec -it <ID CONTENEUR 1> sh
+ping conteneur2
+
+docker exec -it <ID CONTENEUR 2> sh
+ping conteneur1

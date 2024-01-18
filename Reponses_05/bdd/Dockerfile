@@ -6,3 +6,4 @@ ENV POSTGRES_DB docker
 
 COPY . /docker-entrypoint-initdb.d/
 
+EXPOSE 3001
